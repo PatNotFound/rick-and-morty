@@ -11,7 +11,7 @@ const Pagination = ({
   totalPages,
   searchParams,
 }: PaginationType): ReactElement => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     if (searchParams.has("page"))
@@ -19,36 +19,28 @@ const Pagination = ({
   }, []);
 
   const handlePageChange = (newPage: number) => {
+    scrollTo({ top: 0, behavior: "smooth" });
     setPage(newPage);
     const newSearchParams = new URLSearchParams({
       ...searchParams,
       page: newPage.toString(),
     });
-    scrollTo({ top: 0, behavior: "smooth" });
     onPageChange(newSearchParams);
   };
 
-  const goToPrevPage = () => {
-    let newPage = 1;
-
-    if (page > 1) newPage = page - 1;
-
-    handlePageChange(newPage);
+  const goToPreviousPage = () => {
+    handlePageChange(page > 1 ? page - 1 : page);
   };
 
   const goToNextPage = () => {
-    let newPage = page;
-
-    if (page < totalPages) newPage = page + 1;
-
-    handlePageChange(newPage);
+    handlePageChange(page < totalPages ? page + 1 : page);
   };
 
   return (
     <div className="ml-auto flex py-9">
       <button
         type="button"
-        onClick={goToPrevPage}
+        onClick={goToPreviousPage}
         aria-label="Go to previous page"
         disabled={page === 1}
       >

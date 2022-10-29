@@ -29,7 +29,7 @@ const Modal = ({
       <div
         className="fixed inset-0 bg-gray-400 bg-opacity-60"
         onClick={toggleVisibility}
-        aria-label={`${title}-modal`}
+        aria-label={`${title} modal`}
       />
       <div
         className="fixed left-2/4 top-2/4 flex w-auto min-w-[500px] -translate-x-1/2 -translate-y-1/2 transform flex-col rounded-xl bg-white p-6"

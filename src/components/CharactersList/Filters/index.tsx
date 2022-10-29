@@ -30,20 +30,21 @@ const Filters = ({
     gender: "",
   });
 
+  // Sets the filters with the data that comes from the url
   useEffect(() => {
     const urlFilters: FilterType = filters;
+
     for (const [key, value] of searchParams.entries()) {
       urlFilters[key as keyof FilterType] = value;
     }
-    console.log(urlFilters);
+
     setFilters(urlFilters);
   }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const t = new URLSearchParams(filters);
 
-    onFilterChange(t);
+    onFilterChange(new URLSearchParams(filters));
   };
 
   const handleReset = () => {
@@ -65,75 +66,92 @@ const Filters = ({
     filters[name as keyof FilterType] = value;
 
     const cleanFilters = Object.fromEntries(
-      Object.entries(filters).filter(([_, v]) => v != "")
+      Object.entries(filters).filter(([, v]) => v !== "")
     ) as FilterType;
 
     setFilters(cleanFilters);
   };
 
   return (
-    <div className="mb-4 flex flex-col rounded border border-solid border-gray-200 p-5">
+    <div className="mb-4 flex flex-col rounded bg-slate-50 p-5">
       <h2 className="mb-4 text-lg font-medium">Filter by...</h2>
       <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-3 lg:flex-row"
         data-testid="search-form"
         onReset={handleReset}
+        onSubmit={handleSubmit}
       >
-        <input
-          type="search"
-          name="name"
-          placeholder="Name"
-          id="name"
-          className="rounded border-2 border-gray-500 p-1 outline-1"
-          aria-label="Name"
-          onChange={(e) => handleOnChange(e)}
-          defaultValue={filters.name}
-        />
-        <input
-          type="search"
-          name="species"
-          placeholder="Species"
-          id="species"
-          className="rounded border-2 border-gray-500 p-1 outline-1"
-          onChange={(e) => handleOnChange(e)}
-          defaultValue={filters.species}
-        />
-        <select
-          name="status"
-          onChange={(e) => handleOnChange(e)}
-          className="rounded border-2 border-gray-500 p-1 outline-1"
-          value={filters.status}
-          aria-label="Choose a Status"
-        >
-          <option value="">Choose a Status</option>
-          <option value="dead">Dead</option>
-          <option value="alive">Alive</option>
-          <option value="unknown">Unknow</option>
-        </select>
-        <select
-          name="gender"
-          onChange={(e) => handleOnChange(e)}
-          className="rounded border-2 border-gray-500 p-1 outline-1"
-          value={filters.gender}
-        >
-          <option value="">Choose a gender</option>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-          <option value="genderless">Genderless</option>
-          <option value="unknown">Unknow</option>
-        </select>
-        <div className="ml-auto flex">
+        <div className="grid grid-cols-2 grid-rows-2 gap-5">
+          <label htmlFor="name" className="flex flex-col">
+            Name
+            <input
+              aria-label="Name"
+              className="rounded border-2 border-gray-500 p-3 outline outline-1"
+              defaultValue={filters.name}
+              id="name"
+              name="name"
+              onChange={(e) => handleOnChange(e)}
+              placeholder="Character name"
+              type="search"
+            />
+          </label>
+          <label htmlFor="species" className="flex flex-col">
+            Species
+            <input
+              aria-label="Species"
+              className="rounded border-2 border-gray-500 p-3 outline outline-1"
+              defaultValue={filters.species}
+              id="species"
+              name="species"
+              onChange={(e) => handleOnChange(e)}
+              placeholder="Character species"
+              type="search"
+            />
+          </label>
+          <label htmlFor="status" className="flex flex-col">
+            Status
+            <select
+              aria-label="Choose a status"
+              className="rounded border-2 border-gray-500 p-3"
+              id="status"
+              name="status"
+              onChange={(e) => handleOnChange(e)}
+              value={filters.status}
+            >
+              <option value="">Choose a Status</option>
+              <option value="dead">Dead</option>
+              <option value="alive">Alive</option>
+              <option value="unknown">Unknow</option>
+            </select>
+          </label>
+          <label htmlFor="gender" className="flex flex-col">
+            Gender
+            <select
+              aria-label="Choose a gender"
+              className="rounded border-2 border-gray-500 p-3"
+              id="gender"
+              name="gender"
+              onChange={(e) => handleOnChange(e)}
+              value={filters.gender}
+            >
+              <option value="">Choose a gender</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="genderless">Genderless</option>
+              <option value="unknown">Unknow</option>
+            </select>
+          </label>
+        </div>
+        <div className="mt-4 flex justify-end">
           <button
             type="reset"
-            className="border-1 mr-2 h-10 rounded border-blue-300 px-2 outline-1 hover:bg-blue-300 focus:ring disabled:cursor-not-allowed disabled:opacity-50 "
+            className="border-1 mr-2 h-10 rounded border-blue-300 px-2 outline-1 hover:bg-blue-300 focus:outline disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!!Object.values(filters).every((filter) => filter === "")}
           >
             Clear Search
           </button>
           <button
             type="submit"
-            className=" border-1 h-10 rounded border-blue-300 bg-blue-300 px-2 outline-1 hover:bg-blue-400 focus:ring"
+            className=" border-1 h-10 rounded border-blue-300 bg-blue-300 px-2 outline-1 hover:bg-blue-400 focus:outline"
           >
             Search
           </button>

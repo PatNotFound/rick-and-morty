@@ -17,11 +17,14 @@ const CharactersList = (): ReactElement => {
       <Filters onFilterChange={setSearchParams} searchParams={searchParams} />
       {isLoading && <span>Loading...</span>}
       {!isLoading && !!data && data.error && (
-        <span className="flex justify-center" data-testid="error-message">
+        <div
+          className="mt-8 flex w-80 justify-center self-center rounded-xl border border-red-100	p-6 shadow-xl shadow-red-100	"
+          data-testid="error-message"
+        >
           {data.error} 🥲
           <br />
           Please try another search
-        </span>
+        </div>
       )}
       {!isLoading && !!data && data.results && (
         <>

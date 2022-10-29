@@ -4,9 +4,9 @@ import { CharacterType } from "../../../types/character";
 import Modal from "./Modal";
 
 const COLOR = {
-  Alive: "green",
-  Dead: "red",
-  unknown: "gray",
+  Alive: "text-green-600",
+  Dead: "text-red-600",
+  unknown: "text-gray-600",
 };
 
 function Card(character: CharacterType): ReactElement {
@@ -30,16 +30,16 @@ function Card(character: CharacterType): ReactElement {
       <button
         className="flex w-full cursor-pointer items-center gap-4 rounded-xl p-6 shadow-xl"
         onClick={() => toggleModalVisibility()}
-        aria-label={`${name}-card`}
+        aria-label={`${name} card`}
       >
         <img src={image} alt={`${name}-${id}`} className="h-24 rounded-full" />
         <div className="truncate text-left">
           <div className="truncate text-lg font-medium">{name}</div>
           <div className="flex items-center gap-1">
             <i
-              className={`fa-solid fa-circle text-xs text-${
+              className={`fa-solid fa-circle text-xs ${
                 COLOR[status as keyof typeof COLOR]
-              }-600 opacity-40`}
+              } opacity-40`}
             />
             <span className="capitalize">{status}</span>
           </div>
