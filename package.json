@@ -2,6 +2,7 @@
   "name": "rick-and-morty",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://PatNotFound.github.io/rick-and-morty",
   "dependencies": {
     "@tanstack/react-query": "^4.13.0",
     "react": "^18.2.0",
@@ -13,6 +14,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
@@ -49,6 +52,7 @@
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-watch": "8.0.0",
+    "gh-pages": "^4.0.0",
     "jest-environment-jsdom": "^29.2.2",
     "jest-junit": "^14.0.1",
     "postcss": "^8.4.18",
