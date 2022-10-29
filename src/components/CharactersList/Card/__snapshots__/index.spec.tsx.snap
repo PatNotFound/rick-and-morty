@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should render the component 1`] = `
+<div>
+  <li>
+    <button
+      aria-label="Morty Smith-card"
+      class="flex w-full cursor-pointer items-center gap-4 rounded-xl p-6 shadow-xl"
+    >
+      <img
+        alt="Morty Smith-2"
+        class="h-24 rounded-full"
+        src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+      />
+      <div
+        class="truncate text-left"
+      >
+        <div
+          class="truncate text-lg font-medium"
+        >
+          Morty Smith
+        </div>
+        <div
+          class="flex items-center gap-1"
+        >
+          <i
+            class="fa-solid fa-circle text-xs text-green-600 opacity-40"
+          />
+          <span
+            class="capitalize"
+          >
+            Alive
+          </span>
+        </div>
+        <div
+          class="flex"
+        >
+          👤
+           
+          <div
+            class="ml-1 truncate capitalize"
+          >
+            Human
+          </div>
+        </div>
+      </div>
+    </button>
+  </li>
+</div>
+`;

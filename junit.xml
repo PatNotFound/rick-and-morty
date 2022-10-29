@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="4" failures="1" errors="0" time="8.885">
+  <testsuite name="Pagination" errors="0" failures="1" skipped="0" timestamp="2022-10-29T15:00:09" time="5.842" tests="4">
+    <testcase classname="Pagination should render the pagination on the default page (first)" name="Pagination should render the pagination on the default page (first)" time="0.031">
+    </testcase>
+    <testcase classname="Pagination should render the pagination on the received page from the searchParams" name="Pagination should render the pagination on the received page from the searchParams" time="0.008">
+    </testcase>
+    <testcase classname="Pagination should change to the next page on click" name="Pagination should change to the next page on click" time="0.063">
+    </testcase>
+    <testcase classname="Pagination should change to the previous page on click" name="Pagination should change to the previous page on click" time="0.008">
+      <failure>TestingLibraryElementError: Unable to find an element with the text: Page 2 of 15. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;ml-auto flex py-9&quot;
+    &gt;
+      &lt;button
+        aria-label=&quot;Go to previous page&quot;
+        disabled=&quot;&quot;
+        type=&quot;button&quot;
+      &gt;
+        &lt;i
+          class=&quot;fa-solid fa-arrow-left&quot;
+        /&gt;
+      &lt;/button&gt;
+      &lt;span
+        class=&quot;mx-2&quot;
+      &gt;
+        Page 
+        1
+         of 
+        15
+      &lt;/span&gt;
+      &lt;button
+        aria-label=&quot;Go to next page&quot;
+        type=&quot;button&quot;
+      &gt;
+        &lt;i
+          class=&quot;fa-solid fa-arrow-right&quot;
+        /&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (/Users/patricia.sousa/rick-and-morty/node_modules/@testing-library/dom/dist/config.js:40:19)
+    at /Users/patricia.sousa/rick-and-morty/node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+    at /Users/patricia.sousa/rick-and-morty/node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+    at /Users/patricia.sousa/rick-and-morty/node_modules/@testing-library/dom/dist/query-helpers.js:111:19
+    at Object.&lt;anonymous&gt; (/Users/patricia.sousa/rick-and-morty/src/components/CharactersList/Pagination/index.spec.tsx:55:7)
+    at Promise.then.completed (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/utils.js:333:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/utils.js:259:10)
+    at _callCircusTest (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/run.js:277:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/run.js:209:3)
+    at _runTestsForDescribeBlock (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/run.js:97:9)
+    at _runTestsForDescribeBlock (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/run.js:91:9)
+    at run (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/run.js:31:3)
+    at runAndTransformResultsToJestFormat (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:135:21)
+    at jestAdapter (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:92:19)
+    at runTestInternal (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-runner/build/runTest.js:411:16)
+    at runTest (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-runner/build/runTest.js:499:34)
+    at Object.worker (/Users/patricia.sousa/.nvm/versions/node/v14.16.0/lib/node_modules/jest/node_modules/jest-runner/build/testWorker.js:133:12)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
