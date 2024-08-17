@@ -1,10 +1,10 @@
-import React from "react";
-import { render, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import Filters, { FilterPropsType } from ".";
+import Filters, { FilterPropsType } from '.';
 
-describe("Filters", () => {
+describe('Filters', () => {
   const getRender = (props: FilterPropsType) => render(<Filters {...props} />);
 
   const mockedProps = {
@@ -12,37 +12,37 @@ describe("Filters", () => {
     searchParams: new URLSearchParams(),
   };
 
-  it("should clear the form when the clear button is pressed", () => {
+  it('should clear the form when the clear button is pressed', () => {
     const { getByLabelText, getByText } = getRender(mockedProps);
 
-    const nameInput = getByLabelText("Name");
-    const statusSelect = getByLabelText("Choose a Status");
+    const nameInput = getByLabelText('Name');
+    const statusSelect = getByLabelText('Choose a Status');
 
-    fireEvent.change(nameInput, { target: { value: "Morty" } });
-    userEvent.selectOptions(statusSelect, "dead");
+    fireEvent.change(nameInput, { target: { value: 'Morty' } });
+    userEvent.selectOptions(statusSelect, 'dead');
 
-    expect(nameInput).toHaveValue("Morty");
-    expect(statusSelect).toHaveValue("dead");
+    expect(nameInput).toHaveValue('Morty');
+    expect(statusSelect).toHaveValue('dead');
 
-    fireEvent.click(getByText("Clear Search"));
+    fireEvent.click(getByText('Clear Search'));
 
-    expect(nameInput).toHaveValue("");
-    expect(statusSelect).toHaveValue("");
+    expect(nameInput).toHaveValue('');
+    expect(statusSelect).toHaveValue('');
   });
 
-  it("should call onFilterChange on submit", () => {
+  it('should call onFilterChange on submit', () => {
     const { getByLabelText, getByTestId } = getRender(mockedProps);
 
-    const nameInput = getByLabelText("Name");
-    const statusSelect = getByLabelText("Choose a Status");
+    const nameInput = getByLabelText('Name');
+    const statusSelect = getByLabelText('Choose a Status');
 
-    fireEvent.change(nameInput, { target: { value: "Morty" } });
-    userEvent.selectOptions(statusSelect, "dead");
+    fireEvent.change(nameInput, { target: { value: 'Morty' } });
+    userEvent.selectOptions(statusSelect, 'dead');
 
-    expect(nameInput).toHaveValue("Morty");
-    expect(statusSelect).toHaveValue("dead");
+    expect(nameInput).toHaveValue('Morty');
+    expect(statusSelect).toHaveValue('dead');
 
-    fireEvent.submit(getByTestId("search-form"));
+    fireEvent.submit(getByTestId('search-form'));
 
     expect(mockedProps.onFilterChange).toHaveBeenCalled();
   });

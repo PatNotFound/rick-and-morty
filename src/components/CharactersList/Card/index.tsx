@@ -1,12 +1,12 @@
-import React from "react";
-import { ReactElement, useState } from "react";
-import { CharacterType } from "../../../types/character";
-import Modal from "./Modal";
+import React from 'react';
+import { ReactElement, useState } from 'react';
+import { CharacterType } from '../../../types/character';
+import Modal from './Modal';
 
 const COLOR = {
-  Alive: "text-green-600",
-  Dead: "text-red-600",
-  unknown: "text-gray-600",
+  Alive: 'text-green-600',
+  Dead: 'text-red-600',
+  unknown: 'text-gray-600',
 };
 
 function Card(character: CharacterType): ReactElement {
@@ -44,7 +44,7 @@ function Card(character: CharacterType): ReactElement {
             <span className="capitalize">{status}</span>
           </div>
           <div className="flex">
-            {species === "Human" ? "👤" : "👽"}{" "}
+            {species === 'Human' ? '👤' : '👽'}{' '}
             <div className="ml-1 truncate capitalize">{species}</div>
           </div>
         </div>
@@ -54,12 +54,12 @@ function Card(character: CharacterType): ReactElement {
             title={name}
             image={image}
             data={[
-              { label: "Status", value: status },
-              { label: "Species", value: species },
-              { label: "Gender", value: gender },
-              { label: "Location", value: locationName },
-              { label: "Origin", value: originName },
-              { label: "Number of appearances", value: episode.length },
+              { label: 'Status', value: status },
+              { label: 'Species', value: species },
+              { label: 'Gender', value: gender },
+              { label: 'Location', value: locationName },
+              { label: 'Origin', value: originName },
+              { label: 'Number of appearances', value: episode.length },
             ]}
           />
         )}

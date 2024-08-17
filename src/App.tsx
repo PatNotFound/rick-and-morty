@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
+import { ReactElement } from 'react';
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import CharactersPage from "./components/CharactersPage";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import CharactersPage from './components/CharactersPage';
 
 const queryClient = new QueryClient();
 

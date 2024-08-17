@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import {
   ChangeEvent,
   FormEvent,
   ReactElement,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
 type FilterType = {
   name: string;
@@ -24,10 +24,10 @@ const Filters = ({
   searchParams,
 }: FilterPropsType): ReactElement => {
   const [filters, setFilters] = useState({
-    name: "",
-    status: "",
-    species: "",
-    gender: "",
+    name: '',
+    status: '',
+    species: '',
+    gender: '',
   });
 
   // Sets the filters with the data that comes from the url
@@ -49,10 +49,10 @@ const Filters = ({
 
   const handleReset = () => {
     setFilters({
-      name: "",
-      status: "",
-      species: "",
-      gender: "",
+      name: '',
+      status: '',
+      species: '',
+      gender: '',
     });
 
     onFilterChange(new URLSearchParams());
@@ -66,7 +66,7 @@ const Filters = ({
     filters[name as keyof FilterType] = value;
 
     const cleanFilters = Object.fromEntries(
-      Object.entries(filters).filter(([, v]) => v !== "")
+      Object.entries(filters).filter(([, v]) => v !== '')
     ) as FilterType;
 
     setFilters(cleanFilters);
@@ -145,7 +145,7 @@ const Filters = ({
           <button
             type="reset"
             className="border-1 mr-2 h-10 rounded border-blue-300 px-2 outline-1 hover:bg-blue-300 focus:outline disabled:cursor-not-allowed disabled:opacity-50"
-            disabled={!!Object.values(filters).every((filter) => filter === "")}
+            disabled={!!Object.values(filters).every((filter) => filter === '')}
           >
             Clear Search
           </button>

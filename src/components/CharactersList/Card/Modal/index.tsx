@@ -1,6 +1,6 @@
-import React from "react";
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
+import React from 'react';
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 export type ModalProps = {
   toggleVisibility: () => void;
@@ -17,11 +17,11 @@ const Modal = ({
 }: Readonly<ModalProps>): JSX.Element | null => {
   useEffect(() => {
     const onEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") toggleVisibility();
+      if (e.key === 'Escape') toggleVisibility();
     };
 
-    window.addEventListener("keydown", onEscape);
-    return () => window.removeEventListener("keydown", onEscape);
+    window.addEventListener('keydown', onEscape);
+    return () => window.removeEventListener('keydown', onEscape);
   }, []);
 
   const modal: JSX.Element = (

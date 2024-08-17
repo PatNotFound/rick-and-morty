@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
-import RickAndMortyTitle from "../../images/RickAndMortyTitle";
-import CharactersList from "../CharactersList";
+import React, { ReactElement } from 'react';
+import RickAndMortyTitle from '../../images/RickAndMortyTitle';
+import CharactersList from '../CharactersList';
 
 const CharactersPage = (): ReactElement => {
   return (

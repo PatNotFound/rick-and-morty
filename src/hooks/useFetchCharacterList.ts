@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 
 const useFetchCharacterList = (searchParams: URLSearchParams) => {
   return useQuery(
     [
-      "repoData",
-      searchParams.get("name") || "",
-      searchParams.get("species") || "",
-      searchParams.get("status") || "",
-      searchParams.get("gender") || "",
-      searchParams.get("page") || "",
+      'repoData',
+      searchParams.get('name') || '',
+      searchParams.get('species') || '',
+      searchParams.get('status') || '',
+      searchParams.get('gender') || '',
+      searchParams.get('page') || '',
     ],
     ({ queryKey }) =>
       fetch(
