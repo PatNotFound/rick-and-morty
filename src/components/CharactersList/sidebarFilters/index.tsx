@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ChangeEvent,
   FormEvent,
@@ -6,45 +5,43 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { FilterPropsType, FilterType } from '../../../types';
 
-type FilterType = {
-  name: string;
-  status: string;
-  species: string;
-  gender: string;
+const defaultFilters = {
+  name: '',
+  status: '',
+  species: '',
+  gender: '',
 };
 
-export type FilterPropsType = {
-  onFilterChange: (e: URLSearchParams) => void;
-  searchParams: URLSearchParams;
-};
-
-const Filters = ({
+const SidebarFilters = ({
   onFilterChange,
   searchParams,
 }: FilterPropsType): ReactElement => {
-  const [filters, setFilters] = useState({
-    name: '',
-    status: '',
-    species: '',
-    gender: '',
-  });
+  const [filters, setFilters] = useState(defaultFilters);
 
-  // Sets the filters with the data that comes from the url
   useEffect(() => {
-    const urlFilters: FilterType = filters;
-
-    for (const [key, value] of searchParams.entries()) {
-      urlFilters[key as keyof FilterType] = value;
+    const urlFilters: FilterType = { ...defaultFilters };
+    if (searchParams.size === 0) {
+      // Reset to defaultFilters when searchParams is empty
+      setFilters(urlFilters);
+    } else {
+      // Update urlFilters based on searchParams
+      for (const [key, value] of searchParams.entries()) {
+        if (key !== 'page') urlFilters[key as keyof FilterType] = value;
+      }
+      setFilters(urlFilters);
     }
-
-    setFilters(urlFilters);
-  }, []);
+  }, [searchParams]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    onFilterChange(new URLSearchParams(filters));
+    const cleanFilters = Object.fromEntries(
+      Object.entries(filters).filter(([, v]) => v !== '')
+    ) as FilterType;
+
+    onFilterChange(new URLSearchParams(cleanFilters));
   };
 
   const handleReset = () => {
@@ -61,32 +58,32 @@ const Filters = ({
   const handleOnChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = event.target;
-
-    filters[name as keyof FilterType] = value;
-
-    const cleanFilters = Object.fromEntries(
-      Object.entries(filters).filter(([, v]) => v !== '')
-    ) as FilterType;
-
-    setFilters(cleanFilters);
+    setFilters({
+      ...filters,
+      [event.target.name]: event.target.value || '',
+    });
   };
 
   return (
-    <div className="mb-4 flex flex-col rounded bg-slate-50 p-5">
-      <h2 className="mb-4 text-lg font-medium">Filter by...</h2>
+    <div className="mb-4 mr-10 flex flex-col rounded bg-slate-50 p-5">
+      <h2 className="mb-4 text-lg font-medium">Filter by:</h2>
+      <hr />
       <form
         data-testid="search-form"
         onReset={handleReset}
         onSubmit={handleSubmit}
+        className="mt-4"
       >
-        <div className="grid grid-cols-2 grid-rows-2 gap-5">
-          <label htmlFor="name" className="flex flex-col">
+        <div className="grid gap-5">
+          <label
+            htmlFor="name"
+            className="flex flex-col text-sm text-slate-600"
+          >
             Name
             <input
               aria-label="Name"
-              className="rounded border-2 border-gray-500 p-3 outline outline-1"
-              defaultValue={filters.name}
+              className="rounded border border-gray-500 p-2.5 focus:outline focus:outline-2"
+              value={filters.name}
               id="name"
               name="name"
               onChange={(e) => handleOnChange(e)}
@@ -94,12 +91,15 @@ const Filters = ({
               type="search"
             />
           </label>
-          <label htmlFor="species" className="flex flex-col">
+          <label
+            htmlFor="species"
+            className="flex flex-col text-sm text-slate-600"
+          >
             Species
             <input
               aria-label="Species"
-              className="rounded border-2 border-gray-500 p-3 outline outline-1"
-              defaultValue={filters.species}
+              className="rounded border border-gray-500 p-2.5 focus:outline focus:outline-2"
+              value={filters.species}
               id="species"
               name="species"
               onChange={(e) => handleOnChange(e)}
@@ -107,11 +107,14 @@ const Filters = ({
               type="search"
             />
           </label>
-          <label htmlFor="status" className="flex flex-col">
+          <label
+            htmlFor="status"
+            className="flex flex-col text-sm text-slate-600"
+          >
             Status
             <select
               aria-label="Choose a status"
-              className="rounded border-2 border-gray-500 p-3"
+              className="rounded border border-gray-500 p-3"
               id="status"
               name="status"
               onChange={(e) => handleOnChange(e)}
@@ -123,11 +126,14 @@ const Filters = ({
               <option value="unknown">Unknow</option>
             </select>
           </label>
-          <label htmlFor="gender" className="flex flex-col">
+          <label
+            htmlFor="gender"
+            className="flex flex-col text-sm text-slate-600"
+          >
             Gender
             <select
               aria-label="Choose a gender"
-              className="rounded border-2 border-gray-500 p-3"
+              className="rounded border border-gray-500 p-3"
               id="gender"
               name="gender"
               onChange={(e) => handleOnChange(e)}
@@ -144,14 +150,14 @@ const Filters = ({
         <div className="mt-4 flex justify-end">
           <button
             type="reset"
-            className="border-1 mr-2 h-10 rounded border-blue-300 px-2 outline-1 hover:bg-blue-300 focus:outline disabled:cursor-not-allowed disabled:opacity-50"
-            disabled={!!Object.values(filters).every((filter) => filter === '')}
+            className="border-1 mr-2 h-10 rounded border-violet-300 px-2 outline-1 hover:bg-violet-300 focus:outline disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={Object.values(filters).every((filter) => filter === '')}
           >
-            Clear Search
+            Clear
           </button>
           <button
             type="submit"
-            className=" border-1 h-10 rounded border-blue-300 bg-blue-300 px-2 outline-1 hover:bg-blue-400 focus:outline"
+            className=" border-1 h-10 rounded border-violet-200 bg-violet-200 px-2 outline-1 hover:bg-violet-400 focus:outline"
           >
             Search
           </button>
@@ -161,4 +167,4 @@ const Filters = ({
   );
 };
 
-export default Filters;
+export default SidebarFilters;

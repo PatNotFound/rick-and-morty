@@ -1,11 +1,12 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Filters, { FilterPropsType } from '.';
+import SidebarFilters from '.';
+import { FilterPropsType } from '../../../types';
 
-describe('Filters', () => {
-  const getRender = (props: FilterPropsType) => render(<Filters {...props} />);
+describe('SidebarFilters', () => {
+  const getRender = (props: FilterPropsType) =>
+    render(<SidebarFilters {...props} />);
 
   const mockedProps = {
     onFilterChange: jest.fn(),
@@ -16,7 +17,7 @@ describe('Filters', () => {
     const { getByLabelText, getByText } = getRender(mockedProps);
 
     const nameInput = getByLabelText('Name');
-    const statusSelect = getByLabelText('Choose a Status');
+    const statusSelect = getByLabelText('Status');
 
     fireEvent.change(nameInput, { target: { value: 'Morty' } });
     userEvent.selectOptions(statusSelect, 'dead');
@@ -24,7 +25,7 @@ describe('Filters', () => {
     expect(nameInput).toHaveValue('Morty');
     expect(statusSelect).toHaveValue('dead');
 
-    fireEvent.click(getByText('Clear Search'));
+    fireEvent.click(getByText('Clear'));
 
     expect(nameInput).toHaveValue('');
     expect(statusSelect).toHaveValue('');
@@ -34,7 +35,7 @@ describe('Filters', () => {
     const { getByLabelText, getByTestId } = getRender(mockedProps);
 
     const nameInput = getByLabelText('Name');
-    const statusSelect = getByLabelText('Choose a Status');
+    const statusSelect = getByLabelText('Status');
 
     fireEvent.change(nameInput, { target: { value: 'Morty' } });
     userEvent.selectOptions(statusSelect, 'dead');
