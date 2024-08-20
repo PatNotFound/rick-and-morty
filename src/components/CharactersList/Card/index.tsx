@@ -1,7 +1,6 @@
-import React from 'react';
 import { ReactElement, useState } from 'react';
-import { CharacterType } from '../../../types/character';
-import Modal from './Modal';
+import { CharacterType } from '../../../types';
+import Modal from './modal';
 
 const COLOR = {
   Alive: 'text-green-600',
@@ -9,7 +8,7 @@ const COLOR = {
   unknown: 'text-gray-600',
 };
 
-function Card(character: CharacterType): ReactElement {
+const Card = (character: CharacterType): ReactElement => {
   const {
     episode,
     gender,
@@ -28,9 +27,9 @@ function Card(character: CharacterType): ReactElement {
   return (
     <li>
       <button
-        className="flex w-full cursor-pointer items-center gap-4 rounded-xl p-6 shadow-xl"
+        className="flex w-full cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-6 shadow-xl	"
         onClick={() => toggleModalVisibility()}
-        aria-label={`${name} card`}
+        aria-label={`${name}-card`}
       >
         <img src={image} alt={`${name}-${id}`} className="h-24 rounded-full" />
         <div className="truncate text-left">
@@ -66,6 +65,6 @@ function Card(character: CharacterType): ReactElement {
       </button>
     </li>
   );
-}
+};
 
 export default Card;

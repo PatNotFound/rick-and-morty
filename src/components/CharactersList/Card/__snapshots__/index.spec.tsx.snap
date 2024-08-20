@@ -5,7 +5,7 @@ exports[`Card should render the component 1`] = `
   <li>
     <button
       aria-label="Morty Smith-card"
-      class="flex w-full cursor-pointer items-center gap-4 rounded-xl p-6 shadow-xl"
+      class="flex w-full cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-6 shadow-xl	"
     >
       <img
         alt="Morty Smith-2"

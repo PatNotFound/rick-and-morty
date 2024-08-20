@@ -1,8 +1,7 @@
-import React from "react";
-import { render, fireEvent } from "@testing-library/react";
-import Pagination, { PaginationType } from ".";
+import { render, fireEvent } from '@testing-library/react';
+import Pagination, { PaginationType } from '.';
 
-describe("Pagination", () => {
+describe('Pagination', () => {
   const getRender = (props: PaginationType) =>
     render(<Pagination {...props} />);
 
@@ -12,7 +11,7 @@ describe("Pagination", () => {
     searchParams: new URLSearchParams(),
   };
 
-  it("should render the pagination on the default page (first)", () => {
+  it('should render the pagination on the default page (first)', () => {
     const { getByText } = getRender(mockedProps);
 
     expect(
@@ -20,8 +19,8 @@ describe("Pagination", () => {
     ).toBeInTheDocument();
   });
 
-  it("should render the pagination on the received page from the searchParams", () => {
-    const receivedPage = "5";
+  it('should render the pagination on the received page from the searchParams', () => {
+    const receivedPage = '5';
     const { getByText } = getRender({
       ...mockedProps,
       searchParams: new URLSearchParams({ page: receivedPage }),
@@ -32,31 +31,31 @@ describe("Pagination", () => {
     ).toBeInTheDocument();
   });
 
-  it("should change to the next page on click", () => {
+  it('should change to the next page on click', () => {
     const { getByText, getByLabelText } = getRender(mockedProps);
 
     expect(
       getByText(`Page 1 of ${mockedProps.totalPages}`)
     ).toBeInTheDocument();
 
-    fireEvent.click(getByLabelText("Go to next page"));
+    fireEvent.click(getByLabelText('Go to next page'));
 
     expect(
       getByText(`Page 2 of ${mockedProps.totalPages}`)
     ).toBeInTheDocument();
   });
 
-  it("should change to the previous page on click", () => {
+  it('should change to the previous page on click', () => {
     const { getByText, getByLabelText } = getRender({
       ...mockedProps,
-      searchParams: new URLSearchParams({ page: "2" }),
+      searchParams: new URLSearchParams({ page: '2' }),
     });
 
     expect(
       getByText(`Page 2 of ${mockedProps.totalPages}`)
     ).toBeInTheDocument();
 
-    fireEvent.click(getByLabelText("Go to previous page"));
+    fireEvent.click(getByLabelText('Go to previous page'));
 
     expect(
       getByText(`Page 1 of ${mockedProps.totalPages}`)

@@ -1,8 +1,7 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import Card from '.';
-import { CharacterType } from '../../../types/character';
+import Card from './index';
+import { CharacterType } from '../../../types';
 
 describe('Card', () => {
   const getRender = (props: CharacterType) => render(<Card {...props} />);

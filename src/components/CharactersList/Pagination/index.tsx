@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 
 export type PaginationType = {
   onPageChange: (e: URLSearchParams) => void;
@@ -21,11 +21,8 @@ const Pagination = ({
   const handlePageChange = (newPage: number) => {
     scrollTo({ top: 0, behavior: 'smooth' });
     setPage(newPage);
-    const newSearchParams = new URLSearchParams({
-      ...searchParams,
-      page: newPage.toString(),
-    });
-    onPageChange(newSearchParams);
+    searchParams.set('page', newPage.toString());
+    onPageChange(searchParams);
   };
 
   const goToPreviousPage = () => {
@@ -37,20 +34,20 @@ const Pagination = ({
   };
 
   return (
-    <div className="ml-auto flex py-9">
+    <div className="ml-auto flex justify-center py-9">
       <button
         type="button"
         onClick={goToPreviousPage}
         aria-label="Go to previous page"
         disabled={page === 1}
       >
-        <i className="fa-solid fa-arrow-left"></i>
+        <i className="fa-solid fa-caret-left"></i>
       </button>
       <span className="mx-2">
         Page {page} of {totalPages}
       </span>
       <button type="button" onClick={goToNextPage} aria-label="Go to next page">
-        <i className="fa-solid fa-arrow-right"></i>
+        <i className="fa-solid fa-caret-right"></i>
       </button>
     </div>
   );
